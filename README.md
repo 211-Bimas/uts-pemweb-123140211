@@ -51,7 +51,7 @@ npm start
 <img width="1415" height="628" alt="image" src="https://github.com/user-attachments/assets/4e157fa6-0fc4-443c-8aff-bb0dc9d8173f" />
 
 ### 5. History Pencarian dengan Clear All
-<img width="469" height="197" alt="image" src="https://github.com/user-attachments/assets/15ec3c8f-4e98-4b62-a95c-fcf56f148e24" />3333
+<img width="469" height="197" alt="image" src="https://github.com/user-attachments/assets/15ec3c8f-4e98-4b62-a95c-fcf56f148e24" />
 
 ### 6. Error Handling
 <img width="1494" height="293" alt="image" src="https://github.com/user-attachments/assets/f328723c-2bb7-45c8-abf5-89dc523ef741" />
@@ -81,3 +81,4 @@ postcss.config.js
 tailwind.config.js
 vercel.json
 ```
+
