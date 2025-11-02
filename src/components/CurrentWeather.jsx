@@ -1,10 +1,8 @@
 import React from 'react';
 import { Droplets, Wind, Cloud } from 'lucide-react';
 import WeatherIcon from './WeatherIcon';
-import { useTheme } from '../contexts/ThemeContext';
 
 const CurrentWeather = ({ data, unit, onUnitToggle }) => {
-  const { isDarkMode } = useTheme();
   if (!data) return null;
 
   const { name, main, weather, wind } = data;
@@ -13,11 +11,7 @@ const CurrentWeather = ({ data, unit, onUnitToggle }) => {
     : Math.round(main.temp * 9/5 + 32);
 
   return (
-    <div className={`rounded-xl p-6 shadow-lg transition-all duration-300 ${
-      isDarkMode
-        ? 'bg-gradient-to-br from-gray-700 to-gray-800 text-white'
-        : 'bg-gradient-to-br from-blue-400 to-blue-600 text-white'
-    }`}>
+    <div className="rounded-xl p-6 shadow-lg transition-all duration-300 bg-gradient-to-br from-blue-400 to-blue-600 text-white">
       <div className="flex justify-between items-start mb-4">
         <div>
           <h2 className="text-3xl font-bold">{name}</h2>
