@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
 
 const SearchForm = ({ onSearch, suggestions, onCitySelect, isLoading }) => {
-  const { isDarkMode } = useTheme();
   const [city, setCity] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -42,33 +40,21 @@ const SearchForm = ({ onSearch, suggestions, onCitySelect, isLoading }) => {
             minLength="2"
             maxLength="50"
             aria-label="Nama kota"
-            className={`w-full px-4 py-3 pr-10 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-              isDarkMode
-                ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400'
-                : 'border-gray-300 bg-white text-gray-900'
-            }`}
+            className="w-full px-4 py-3 pr-10 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300 bg-white text-gray-900" 
             disabled={isLoading}
           />
-          <Search className={`absolute right-3 top-3.5 pointer-events-none transition-colors ${
-            isDarkMode ? 'text-gray-500' : 'text-gray-400'
-          }`} size={20} />
+          <Search className="absolute right-3 top-3.5 pointer-events-none transition-colors text-gray-400" 
+            size={20} 
+          />
 
           {currentSuggestions.length > 0 && (
-            <div className={`absolute z-10 w-full mt-1 border rounded-lg shadow-lg max-h-48 overflow-y-auto transition-colors ${
-              isDarkMode
-                ? 'bg-gray-800 border-gray-600'
-                : 'bg-white border-gray-300'
-            }`}>
+            <div className="absolute z-10 w-full mt-1 border rounded-lg shadow-lg max-h-48 overflow-y-auto transition-colors bg-white border-gray-300">
               {currentSuggestions.map((suggestion, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => handleSuggestionClick(suggestion)}
-                  className={`w-full px-4 py-2 text-left transition-colors block ${
-                    isDarkMode
-                      ? 'hover:bg-gray-700 text-white'
-                      : 'hover:bg-blue-50 text-gray-900'
-                  }`}
+                  className="w-full px-4 py-2 text-left transition-colors block 'hover:bg-blue-50 text-gray-900"
                 >
                   {suggestion}
                 </button>
