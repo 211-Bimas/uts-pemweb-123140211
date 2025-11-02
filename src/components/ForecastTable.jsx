@@ -11,7 +11,7 @@ const ForecastTable = ({ forecast, unit }) => {
     const dailyData = {};
     
     forecast.forEach(item => {
-      const date = new Date(item.dt * 1000).toLocaleDateString('en-US', { 
+      const date = new Date(item.dt * 1000).toLocaleDateString('id-ID', { 
         weekday: 'short', 
         month: 'short', 
         day: 'numeric' 
@@ -60,17 +60,17 @@ const ForecastTable = ({ forecast, unit }) => {
     }`}>
       <h3 className={`text-xl font-bold p-4 border-b ${
         isDarkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
-      }`}>5-Day Forecast</h3>
+      }`}>Prakiraan 5 Hari</h3>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead className={isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}>
             <tr>
-              <th className="px-4 py-3 text-left font-semibold">Date</th>
-              <th className="px-4 py-3 text-center font-semibold">Weather</th>
-              <th className="px-4 py-3 text-center font-semibold">Temp (Min/Max)</th>
-              <th className="px-4 py-3 text-center font-semibold">Humidity</th>
-              <th className="px-4 py-3 text-center font-semibold">Wind Speed</th>
+              <th className="px-4 py-3 text-left font-semibold">Tanggal</th>
+              <th className="px-4 py-3 text-center font-semibold">Cuaca</th>
+              <th className="px-4 py-3 text-center font-semibold">Suhu (Min/Max)</th>
+              <th className="px-4 py-3 text-center font-semibold">Kelembaban</th>
+              <th className="px-4 py-3 text-center font-semibold">Kecepatan Angin</th>
             </tr>
           </thead>
           <tbody className={isDarkMode ? 'divide-gray-600' : 'divide-gray-200'}>

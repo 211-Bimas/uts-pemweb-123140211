@@ -13,7 +13,7 @@ const SearchHistory = ({ history, onCityClick, onClearHistory }) => {
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-lg font-bold flex items-center gap-2">
           <History size={20} />
-          Search History
+          Riwayat Pencarian
         </h3>
         <button
           onClick={onClearHistory}
@@ -22,10 +22,10 @@ const SearchHistory = ({ history, onCityClick, onClearHistory }) => {
               ? 'text-red-400 hover:text-red-300'
               : 'text-red-500 hover:text-red-700'
           }`}
-          aria-label="Clear search history"
+          aria-label="Hapus riwayat pencarian"
         >
           <Trash2 size={16} />
-          Clear
+          Hapus
         </button>
       </div>
 

@@ -37,11 +37,11 @@ const SearchForm = ({ onSearch, suggestions, onCitySelect, isLoading }) => {
             type="text"
             value={city}
             onChange={handleCityChange}
-            placeholder="Enter city name"
+            placeholder="Masukkan nama kota"
             required
             minLength="2"
             maxLength="50"
-            aria-label="City name"
+            aria-label="Nama kota"
             className={`w-full px-4 py-3 pr-10 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
               isDarkMode
                 ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400'
@@ -83,7 +83,7 @@ const SearchForm = ({ onSearch, suggestions, onCitySelect, isLoading }) => {
           disabled={isLoading || !city.trim()}
           className="px-6 py-3 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-lg disabled:bg-gray-400 dark:disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
         >
-          {isLoading ? 'Searching...' : 'Search'}
+          {isLoading ? 'Mencari...' : 'Cari'}
         </button>
       </div>
     </div>

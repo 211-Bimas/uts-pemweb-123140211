@@ -26,7 +26,7 @@ const CurrentWeather = ({ data, unit, onUnitToggle }) => {
         <button
           onClick={onUnitToggle}
           className="bg-white/20 px-4 py-2 rounded-lg hover:bg-white/30 transition-colors"
-          aria-label="Toggle temperature unit"
+          aria-label="Alihkan satuan suhu"
         >
           °{unit === 'celsius' ? 'C' : 'F'} | °{unit === 'celsius' ? 'F' : 'C'}
         </button>
@@ -41,15 +41,15 @@ const CurrentWeather = ({ data, unit, onUnitToggle }) => {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <Droplets size={20} />
-            <span>Humidity: {main.humidity}%</span>
+            <span>Kelembaban: {main.humidity}%</span>
           </div>
           <div className="flex items-center gap-2">
             <Wind size={20} />
-            <span>Wind: {wind.speed} m/s</span>
+            <span>Angin: {wind.speed} m/s</span>
           </div>
           <div className="flex items-center gap-2">
             <Cloud size={20} />
-            <span>Feels like: {unit === 'celsius' 
+            <span>Terasa seperti: {unit === 'celsius' 
               ? Math.round(main.feels_like) 
               : Math.round(main.feels_like * 9/5 + 32)}°</span>
           </div>
