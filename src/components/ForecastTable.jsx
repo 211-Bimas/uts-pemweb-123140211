@@ -2,55 +2,54 @@ import React from 'react';
 import { Droplets, Wind } from 'lucide-react';
 import WeatherIcon from './WeatherIcon';
 
-const ForecastTable = ({ forecast, unit }) => {
+const ForecastTable = ({ forecast, unit, formatTemp, translateWeatherDescription }) => {
   if (!forecast || forecast.length === 0) return null;
 
   const getDailyForecasts = () => {
     const dailyData = {};
     
     forecast.forEach(item => {
-      const date = new Date(item.dt * 1000).toLocaleDateString('id-ID', { 
+      const dateKey = new Date(item.dt * 1000).toISOString().split('T')[0];
+      
+      if (!dailyData[dateKey]) {
+        dailyData[dateKey] = {
+          temps: [],
+          weather: item.weather[0],
+          humidity: [],
+          wind: []
+        };
+      }
+      
+      dailyData[dateKey].temps.push(item.main.temp);
+      dailyData[dateKey].humidity.push(item.main.humidity);
+      dailyData[dateKey].wind.push(item.wind.speed);
+    });
+
+    return Object.entries(dailyData).slice(0, 5).map(([dateKey, data]) => {
+      
+      const minTemp = Math.min(...data.temps);
+      const maxTemp = Math.max(...data.temps);
+      const avgHumidity = data.humidity.reduce((a, b) => a + b, 0) / data.humidity.length;
+      const avgWind = data.wind.reduce((a, b) => a + b, 0) / data.wind.length;
+      
+      const displayDate = new Date(dateKey).toLocaleDateString('id-ID', { 
         weekday: 'short', 
         month: 'short', 
         day: 'numeric' 
       });
-      
-      if (!dailyData[date]) {
-        dailyData[date] = {
-          temps: [],
-          weather: item.weather[0],
-          humidity: item.main.humidity,
-          wind: item.wind.speed
-        };
-      }
-      
-      dailyData[date].temps.push(item.main.temp);
-    });
 
-    return Object.entries(dailyData).slice(0, 5).map(([date, data]) => {
-      const avgTemp = data.temps.reduce((a, b) => a + b, 0) / data.temps.length;
-      const minTemp = Math.min(...data.temps);
-      const maxTemp = Math.max(...data.temps);
-      
       return {
-        date,
-        avgTemp,
+        date: displayDate,
         minTemp,
         maxTemp,
         weather: data.weather,
-        humidity: data.humidity,
-        wind: data.wind
+        humidity: avgHumidity,
+        wind: avgWind
       };
     });
   };
 
   const dailyForecasts = getDailyForecasts();
-
-  const convertTemp = (temp) => {
-    return unit === 'celsius' 
-      ? Math.round(temp) 
-      : Math.round(temp * 9/5 + 32);
-  };
 
   return (
     <div className="rounded-xl shadow-lg overflow-hidden transition-colors 'bg-white text-gray-900">
@@ -76,13 +75,14 @@ const ForecastTable = ({ forecast, unit }) => {
                 <td className="px-4 py-3">
                   <div className="flex flex-col items-center gap-1">
                     <WeatherIcon weatherMain={day.weather.main} size={32} />
-                    <span className="text-xs capitalize">{day.weather.description}</span>
+                    <span className="text-xs capitalize">
+                      {translateWeatherDescription(day.weather.description)}
+                    </span>
                   </div>
                 </td>
                 <td className="px-4 py-3 text-center">
-                  <div className="font-semibold">{convertTemp(day.avgTemp)}°</div>
-                  <div className="text-sm text-gray-500">
-                    {convertTemp(day.minTemp)}° / {convertTemp(day.maxTemp)}°
+                  <div className="font-semibold">
+                    {formatTemp(day.minTemp, unit)} / {formatTemp(day.maxTemp, unit)}
                   </div>
                 </td>
                 <td className="px-4 py-3 text-center">
