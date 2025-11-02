@@ -60,7 +60,7 @@ const ForecastTable = ({ forecast, unit }) => {
     }`}>
       <h3 className={`text-xl font-bold p-4 border-b ${
         isDarkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
-      }`}>Prakiraan 5 Hari</h3>
+      }`}>Prakiraan Cuaca 5 Hari Kedepan</h3>
 
       <div className="overflow-x-auto">
         <table className="w-full">
