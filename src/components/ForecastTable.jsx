@@ -1,10 +1,8 @@
 import React from 'react';
 import { Droplets, Wind } from 'lucide-react';
 import WeatherIcon from './WeatherIcon';
-import { useTheme } from '../contexts/ThemeContext';
 
 const ForecastTable = ({ forecast, unit }) => {
-  const { isDarkMode } = useTheme();
   if (!forecast || forecast.length === 0) return null;
 
   const getDailyForecasts = () => {
@@ -55,16 +53,14 @@ const ForecastTable = ({ forecast, unit }) => {
   };
 
   return (
-    <div className={`rounded-xl shadow-lg overflow-hidden transition-colors ${
-      isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
-    }`}>
-      <h3 className={`text-xl font-bold p-4 border-b ${
-        isDarkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'
-      }`}>Prakiraan Cuaca 5 Hari Kedepan</h3>
+    <div className="rounded-xl shadow-lg overflow-hidden transition-colors 'bg-white text-gray-900">
+      <h3 className="text-xl font-bold p-4 border-b bg-gray-50 border-gray-200">
+        Prakiraan Cuaca 5 Hari Kedepan
+      </h3>
 
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className={isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}>
+          <thead className="bg-gray-100">
             <tr>
               <th className="px-4 py-3 text-left font-semibold">Tanggal</th>
               <th className="px-4 py-3 text-center font-semibold">Cuaca</th>
@@ -73,11 +69,9 @@ const ForecastTable = ({ forecast, unit }) => {
               <th className="px-4 py-3 text-center font-semibold">Kecepatan Angin</th>
             </tr>
           </thead>
-          <tbody className={isDarkMode ? 'divide-gray-600' : 'divide-gray-200'}>
+          <tbody className="divide-gray-200">
             {dailyForecasts.map((day, index) => (
-              <tr key={index} className={`transition-colors ${
-                isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-50'
-              }`}>
+              <tr key={index} className="transition-colors hover:bg-gray-50">
                 <td className="px-4 py-3 font-medium">{day.date}</td>
                 <td className="px-4 py-3">
                   <div className="flex flex-col items-center gap-1">
@@ -87,9 +81,7 @@ const ForecastTable = ({ forecast, unit }) => {
                 </td>
                 <td className="px-4 py-3 text-center">
                   <div className="font-semibold">{convertTemp(day.avgTemp)}°</div>
-                  <div className={`text-sm ${
-                    isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                  }`}>
+                  <div className="text-sm text-gray-500">
                     {convertTemp(day.minTemp)}° / {convertTemp(day.maxTemp)}°
                   </div>
                 </td>
@@ -101,7 +93,7 @@ const ForecastTable = ({ forecast, unit }) => {
                 </td>
                 <td className="px-4 py-3 text-center">
                   <div className="flex items-center justify-center gap-1">
-                    <Wind size={16} className={isDarkMode ? 'text-gray-400' : 'text-gray-500'} />
+                    <Wind size={16} className="text-gray-500" />
                     {day.wind.toFixed(1)} m/s
                   </div>
                 </td>
