@@ -19,9 +19,14 @@ const AppContent = () => {
 
 
   const popularCities = [
-    'London', 'Paris', 'New York', 'Tokyo', 'Sydney',
-    'Jakarta', 'Singapore', 'Bangkok', 'Dubai', 'Rome',
-    'Berlin', 'Madrid', 'Amsterdam', 'Seoul', 'Mumbai'
+    'Jakarta', 'Surabaya', 'Bandung', 'Medan', 'Bekasi',
+    'Depok', 'Tangerang', 'Semarang', 'Palembang', 'Makassar',
+    'Bogor', 'Batam', 'Pekanbaru', 'Denpasar', 'Malang',
+    'Yogyakarta', 'Padang', 'Banjarmasin', 'Pontianak', 'Manado',
+    'Balikpapan', 'Samarinda', 'Mataram', 'Kupang', 'Jayapura',
+    'Ambon', 'Palangkaraya', 'Banda Aceh', 'Jambi', 'Cirebon',
+    'Solo', 'Tegal', 'Surakarta', 'Palu', 'Kendari',
+    'Gorontalo', 'Ternate', 'Sorong', 'Tarakan'
   ];
 
   const fetchWeatherData = useCallback(async (city) => {
@@ -39,14 +44,14 @@ const AppContent = () => {
 
     } catch (err) {
       console.error('Failed to fetch weather data:', err);
-      setError('Failed to fetch weather data. Please try again.');
+      setError('Gagal mengambil data cuaca. Silakan coba lagi.');
     } finally {
       setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    fetchWeatherData('Jakarta');
+    fetchWeatherData('Bandar Lampung');
   }, [fetchWeatherData]);
 
   const addToHistory = (city) => {
@@ -97,18 +102,17 @@ const AppContent = () => {
                 ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400'
                 : 'bg-white hover:bg-gray-50 text-gray-600 shadow-lg'
             }`}
-            aria-label="Toggle theme"
+            aria-label="Alihkan tema"
           >
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <h1 className={`text-4xl font-bold mb-2 flex items-center justify-center gap-3 ${
             isDarkMode ? 'text-white' : 'text-gray-800'
           }`}>
-            <Cloud className={isDarkMode ? 'text-blue-400' : 'text-blue-500'} size={40} />
-            Weather Dashboard
+            Dasbor Cuaca
           </h1>
           <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-            Real-time weather information for any city
+            Informasi cuaca real-time
           </p>
         </header>
 
@@ -150,9 +154,9 @@ const AppContent = () => {
         <footer className={`mt-12 text-center text-sm ${
           isDarkMode ? 'text-gray-400' : 'text-gray-600'
         }`}>
-          <p>Weather data by OpenWeatherMap API</p>
-          <p className="mt-1">© 2025 Weather Dashboard</p>
-          <p className="mt-1">Made by Muhammad Bimastiar 123140211</p>
+          <p>Data cuaca oleh OpenWeatherMap API</p>
+          <p className="mt-1">© 2025 Dasbor Cuaca</p>
+          <p className="mt-1">Dibuat oleh Muhammad Bimastiar 123140211</p>
         </footer>
       </div>
     </div>
