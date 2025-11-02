@@ -98,7 +98,7 @@ const AppContent = () => {
             Dasbor Cuaca
           </h1>
           <p className="text-gray-600">
-            Informasi cuaca real-time untuk kota mana pun
+            Informasi cuaca real-time
           </p>
         </header>
 
@@ -136,7 +136,6 @@ const AppContent = () => {
           </div>
 
           <div className="lg:col-span-3">
-            {/* PASTIKAN PROPS INI DIKIRIM KE FORECAST TABLE */}
             <ForecastTable 
                 forecast={forecast} 
                 unit={unit} 
