@@ -56,6 +56,9 @@ npm start
 ### 6. Error Handling
 <img width="1494" height="293" alt="image" src="https://github.com/user-attachments/assets/f328723c-2bb7-45c8-abf5-89dc523ef741" />
 
+### 7. Tema Warna Sesuai Cuaca
+<img width="1558" height="535" alt="image" src="https://github.com/user-attachments/assets/3316551a-fb23-45a0-aaa4-5240b1d3d7d4" />
+<img width="1476" height="524" alt="image" src="https://github.com/user-attachments/assets/c340ce07-5226-4af3-9635-fd262f9433f6" />
 
 ## Struktur Project
 ```
@@ -81,4 +84,5 @@ postcss.config.js
 tailwind.config.js
 vercel.json
 ```
+
 
