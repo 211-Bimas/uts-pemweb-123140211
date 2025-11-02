@@ -92,7 +92,7 @@ const AppContent = () => {
             Dasbor Cuaca
           </h1>
             <p className="text-gray-600">
-              Informasi cuaca real-time untuk kota mana pun
+              Informasi cuaca real-time
             </p>
         </header>
 
