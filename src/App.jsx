@@ -3,6 +3,7 @@ import SearchForm from './components/SearchForm';
 import CurrentWeather from './components/CurrentWeather';
 import ForecastTable from './components/ForecastTable';
 import SearchHistory from './components/SearchHistory';
+import { formatTemp, getWeatherBgClasses, getPageBgClasses, translateWeatherDescription } from './utils/weather'; 
 import { fetchCurrentWeather, fetchForecast } from './utils/api';
 import './App.css';
 
@@ -13,7 +14,6 @@ const AppContent = () => {
   const [unit, setUnit] = useState('celsius');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
 
   const popularCities = [
     'Jakarta', 'Surabaya', 'Bandung', 'Medan', 'Bekasi',
@@ -83,17 +83,23 @@ const AppContent = () => {
       city.toLowerCase().includes(input.toLowerCase())
     ).slice(0, 5);
   };
+  
+  const isDataReady = !isLoading && currentWeather;
+
+  const pageBackground = isDataReady 
+    ? getPageBgClasses(currentWeather.weather[0].id) 
+    : 'bg-gradient-to-br from-blue-50 to-indigo-100'; 
 
   return (
-    <div className="min-h-screen transition-all duration-300 bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-900">
+    <div className={`min-h-screen transition-all duration-300 text-gray-900 ${pageBackground}`}>
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         <header className="text-center mb-8 relative">
           <h1 className="text-4xl font-bold mb-2 flex items-center justify-center gap-3 text-gray-800">
             Dasbor Cuaca
           </h1>
-            <p className="text-gray-600">
-              Informasi cuaca real-time
-            </p>
+          <p className="text-gray-600">
+            Informasi cuaca real-time untuk kota mana pun
+          </p>
         </header>
 
         <SearchForm
@@ -115,6 +121,9 @@ const AppContent = () => {
               data={currentWeather} 
               unit={unit} 
               onUnitToggle={handleUnitToggle}
+              getWeatherBgClasses={getWeatherBgClasses}
+              formatTemp={formatTemp}
+              translateWeatherDescription={translateWeatherDescription}
             />
           </div>
 
@@ -127,7 +136,13 @@ const AppContent = () => {
           </div>
 
           <div className="lg:col-span-3">
-            <ForecastTable forecast={forecast} unit={unit} />
+            {/* PASTIKAN PROPS INI DIKIRIM KE FORECAST TABLE */}
+            <ForecastTable 
+                forecast={forecast} 
+                unit={unit} 
+                formatTemp={formatTemp}
+                translateWeatherDescription={translateWeatherDescription}
+            />
           </div>
         </div>
 
