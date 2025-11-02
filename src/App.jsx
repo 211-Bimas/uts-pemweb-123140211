@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Cloud, Sun, Moon } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import SearchForm from './components/SearchForm';
 import CurrentWeather from './components/CurrentWeather';
 import ForecastTable from './components/ForecastTable';
