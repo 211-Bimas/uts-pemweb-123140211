@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Sun, Moon } from 'lucide-react';
 import SearchForm from './components/SearchForm';
 import CurrentWeather from './components/CurrentWeather';
 import ForecastTable from './components/ForecastTable';
 import SearchHistory from './components/SearchHistory';
 import { fetchCurrentWeather, fetchForecast } from './utils/api';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import './App.css';
 
 const AppContent = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [searchHistory, setSearchHistory] = useState([]);
@@ -88,32 +85,15 @@ const AppContent = () => {
   };
 
   return (
-    <div className={`min-h-screen transition-all duration-300 ${
-      isDarkMode
-        ? 'bg-gradient-to-br from-gray-900 to-gray-800 text-white'
-        : 'bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-900'
-    }`}>
+    <div className="min-h-screen transition-all duration-300 bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-900">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         <header className="text-center mb-8 relative">
-          <button
-            onClick={toggleTheme}
-            className={`absolute right-4 top-0 p-3 rounded-full transition-all duration-300 ${
-              isDarkMode
-                ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400'
-                : 'bg-white hover:bg-gray-50 text-gray-600 shadow-lg'
-            }`}
-            aria-label="Alihkan tema"
-          >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          <h1 className={`text-4xl font-bold mb-2 flex items-center justify-center gap-3 ${
-            isDarkMode ? 'text-white' : 'text-gray-800'
-          }`}>
+          <h1 className="text-4xl font-bold mb-2 flex items-center justify-center gap-3 text-gray-800">
             Dasbor Cuaca
           </h1>
-          <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-            Informasi cuaca real-time
-          </p>
+            <p className="text-gray-600">
+              Informasi cuaca real-time untuk kota mana pun
+            </p>
         </header>
 
         <SearchForm
@@ -151,9 +131,7 @@ const AppContent = () => {
           </div>
         </div>
 
-        <footer className={`mt-12 text-center text-sm ${
-          isDarkMode ? 'text-gray-400' : 'text-gray-600'
-        }`}>
+        <footer className="mt-12 text-center text-sm text-gray-600">
           <p>Data cuaca oleh OpenWeatherMap API</p>
           <p className="mt-1">© 2025 Dasbor Cuaca</p>
           <p className="mt-1">Dibuat oleh Muhammad Bimastiar 123140211</p>
@@ -164,11 +142,7 @@ const AppContent = () => {
 };
 
 const App = () => {
-  return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
-  );
+  return <AppContent />
 };
 
 export default App;
